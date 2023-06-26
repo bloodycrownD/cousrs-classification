@@ -1,23 +1,21 @@
 import $ from "jquery";
-import CSS from "./css";
+export * from "./css";
 
 
 interface option {
     title?: string,
     colHeads?: string[],
     data?: any[][],
-    element?: string,
     name?:string
 }
 
-export default function DataList({
-    title = 'table title',
+export function DataList({
+    title = '',
     colHeads = [],
     data = [[]],
-    element = "body",
     name = 'default'
 }: option) {
-    $(
+    return $(
         `<table class="${name}Table">
         <caption class="${name}Caption">${title}</caption>
         <thead class='${name}Thead'>
@@ -32,7 +30,5 @@ export default function DataList({
             <tr class='${name}Tr'><td class='${name}Td' colspan='${colHeads.length}'>foot</td></tr>
         </tfoot>
     </table>`
-    )
-        .appendTo(element);
-    CSS({})
+    );
 }

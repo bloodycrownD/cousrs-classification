@@ -3,11 +3,11 @@ interface option{
     name?:string
 }
 
-export default function CSS({
+export function DataListCSS({
     name='default'
 }:option){
     $(`.${name}Table`).css({
-        width: '400px',
+        width: '100%',
         borderCollapse: 'collapse',
     })
     

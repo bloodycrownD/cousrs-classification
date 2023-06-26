@@ -6,7 +6,8 @@
   "scripts": {
     "run": "node out/index.js",
     "compile": "tsc",
-    "pack": "npx webpack"
+    "pack": "npx webpack",
+    "test":"tsc && node out/test/test.js"
   },
   "author": "",
   "license": "ISC",
