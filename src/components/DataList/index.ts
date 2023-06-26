@@ -26,9 +26,6 @@ export function DataList({
         <tbody class='${name}Tbody'>
             ${data.map(row => `<tr class='${name}Tr'>${row.map(rd => `<td class='${name}Td'>${rd}</td>`).join("")}</tr>`).join("")}
         </tbody>
-        <tfoot>
-            <tr class='${name}Tr'><td class='${name}Td' colspan='${colHeads.length}'>foot</td></tr>
-        </tfoot>
     </table>`
     );
 }

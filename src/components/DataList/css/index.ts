@@ -1,11 +1,10 @@
 import $ from 'jquery';
-interface option{
-    name?:string
+class DataListCSSOption{
+    name?:string ='default'
 }
 
-export function DataListCSS({
-    name='default'
-}:option){
+export function DataListCSS(option = new DataListCSSOption()){
+    const {name} = option;
     $(`.${name}Table`).css({
         width: '100%',
         borderCollapse: 'collapse',
@@ -36,10 +35,10 @@ export function DataListCSS({
         color: '#f40'
     })
     
-    $(`.${name}Table tfoot .${name}Td`).css({
-        textAlign: 'left',
-        paddingLeft: `20px`
-    })   
+    // $(`.${name}Table tfoot .${name}Td`).css({
+    //     textAlign: 'left',
+    //     paddingLeft: `20px`
+    // })   
     let tmpColor;
     $(`.${name}Table .${name}Tbody .${name}Tr`)
     .on( "mouseenter", function(){

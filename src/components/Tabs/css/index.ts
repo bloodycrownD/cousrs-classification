@@ -1,7 +1,9 @@
 import $ from "jquery";
+class TabCSSOption{
+    width = '1000px'
+}
 
-
-export function TabCSS(){
+export function TabCSS(option = new TabCSSOption()){
     $("#tabs > div:not(:nth-of-type(1))").css({
         display:"none"
     })
@@ -27,7 +29,7 @@ export function TabCSS(){
         border: '#e7ebf0 1px solid',
         padding: '0 15px',
         paddingTop: '10px',
-        width: '600px',
+        width: `${option.width}`,
     })
     
     $(`#tabs .tabUl `).css({
@@ -45,5 +47,22 @@ export function TabCSS(){
     
     $(`#tabs > div `).css({
         padding:'10px 0',
+    })
+
+    $(`#tabs > div .footInfo`).css({
+        borderTop: '#e7ebf0 1px solid',
+        margin:"20",
+        border: '1px #999999 solid',
+        marginTop: '12px',
+        height: '40px',
+        background: '#eeeeee'
+    })
+    $(`#tabs > div .footInfo p`).css({
+        padding: '10px',
+        color: 'red'
+    })
+    $(`#tabs > div .content `).css({
+        overflowY: 'scroll',
+        height:"50vh"
     })
 }

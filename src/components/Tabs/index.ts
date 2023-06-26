@@ -3,16 +3,21 @@ export * from "./css"
 
 interface option{
     heads?:string[],
-    contentsID?:string[]
+    contentsIDs?:string[]
+    footInfoIDs?:string[]
 }
 export default function Tabs({
     heads = [],
-    contentsID = []
+    contentsIDs = [],
+    footInfoIDs = []
 }:option){
     return $(`<div id="tabs">
-    <ul class="tabUl">
-        ${heads.map(h=>`<li class="tabLi">${h}</li>`).join('')}
-    </ul>
-    ${contentsID.map(c=>`<div id="${c}"></div>`).join('')}
-</div>`)
+                <ul class="tabUl">
+                    ${heads.map(h=>`<li class="tabLi">${h}</li>`).join('')}
+                </ul>
+                ${contentsIDs.map((val,index)=>`<div >
+                            <div id="${val}" class='content'></div>
+                            <div id="${footInfoIDs[index]}" style="${footInfoIDs[index]?"":"display:none;"}" class='footInfo'></div>
+                        </div>`).join('')}
+            </div>`)
 }
