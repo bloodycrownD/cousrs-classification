@@ -37,7 +37,28 @@ $.post("http://jwes.hit.edu.cn/cjcx/queryQmcj", { pageNo: 1, pageSize: 100, page
         ],
         data: formdata,
     }).appendTo(getIdSelector('总览content'))
-    $(getIdSelector("总览footInfo")).html(`<p>总学分：${formdata.map(m => Number(m[6])).reduce((x, y) => x + y)}</p>`)
+    const totalScore = formdata.map(m => Number(m[6])).reduce((x, y) => x + y)
+    function normalAlgorithm(score:number){
+        if (score <= 100 && score >= 90) return 4.0;
+        if (score < 90 && score >= 80) return 3.0;
+        if (score < 80 && score >= 70) return 2.0;
+        if (score < 70 && score >= 60) return 1.0;
+        return 0;
+    }
+    function peikingAlgorithm(score:number){
+        if (score <= 100 && score >= 90) return 4.0;
+        if (score < 90 && score >= 85) return 3.7;
+        if (score < 85 && score >= 82) return 3.3;
+        if (score < 82 && score >= 78) return 3.0;
+        if (score < 78 && score >= 75) return 2.7;
+        if (score < 75 && score >= 72) return 2.3;
+        if (score < 72 && score >= 68) return 2.0;
+        if (score < 68 && score >= 64) return 1.5;
+        if (score < 64 && score >= 60) return 1.0;
+        return 0;
+    }
+
+    $(getIdSelector("总览footInfo")).html(`<p>总学分：${totalScore}&nbsp;&nbsp;&nbsp; (GPA) 标准算法：${(formdata.map(m =>Number(m[6]) * normalAlgorithm(Number(m[9]))).reduce((x, y) => x + y)/totalScore).toFixed(2)} | 北大4.0：${(formdata.map(m =>Number(m[6]) * peikingAlgorithm(Number(m[9]))).reduce((x, y) => x + y)/totalScore).toFixed(2)}</p>`)
 
 
     DataList({
@@ -136,7 +157,7 @@ $.post("http://jwes.hit.edu.cn/cjcx/queryQmcj", { pageNo: 1, pageSize: 100, page
         data: formdata,
         colHeadIds: getContensIDs('学年学期', "开课院系", "课程代码", "课程名称", "课程性质", "课程类别", "学分", "是否考试课", "参与学分绩", "总成绩", "教学班排名")
     }).appendTo(getIdSelector("自定义content"))
-    $(getIdSelector("自定义footInfo")).html(`<p>总学分：${formdata.filter(f => f[5] === 'MOOC').map(m => Number(m[6])).reduce((x, y) => x + y)}</p>`)
+    $(getIdSelector("自定义footInfo")).html(`<p>总学分：${formdata.map(m => Number(m[6])).reduce((x, y) => x + y)}</p>`)
 
     SelectMenu({ items: [...new Set(formdata.map(m => m[0]))] }).appendTo(getIdSelector('学年学期'))
     SelectMenu({ items: [...new Set(formdata.map(m => m[1]))] }).appendTo(getIdSelector("开课院系"))
