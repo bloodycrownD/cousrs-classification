@@ -1,6 +1,6 @@
 import $ from "jquery";
 class TabCSSOption{
-    width = '1000px'
+    width = '100%'
 }
 
 export function TabCSS(option = new TabCSSOption()){
@@ -27,7 +27,6 @@ export function TabCSS(option = new TabCSSOption()){
     })
     $(`#tabs `).css({
         border: '#e7ebf0 1px solid',
-        padding: '0 15px',
         paddingTop: '10px',
         width: `${option.width}`,
     })
@@ -57,10 +56,7 @@ export function TabCSS(option = new TabCSSOption()){
         height: '40px',
         background: '#eeeeee'
     })
-    $(`#tabs > div .footInfo p`).css({
-        padding: '10px',
-        color: 'red'
-    })
+    
     $(`#tabs > div .content `).css({
         overflowY: 'scroll',
         height:"50vh"

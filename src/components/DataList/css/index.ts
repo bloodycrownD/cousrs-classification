@@ -10,16 +10,16 @@ export function DataListCSS(option = new DataListCSSOption()){
         borderCollapse: 'collapse',
     })
     
-    $(`.${name}Caption`).css({
-        fontSize: '2em',
-        fontWeight: 'bold',
-        margin: '1em 0'
-    })
+    // $(`.${name}Caption`).css({
+    //     fontSize: '2em',
+    //     fontWeight: 'bold',
+    //     margin: '1em 0'
+    // })
     
     $(`.${name}Th,.${name}Td`).css({
         border: '1px solid #999',
         textAlign: ' center',
-        padding: '20px 0'
+        // padding: '20px 0'
     })
     
     $(`.${name}Table .${name}Thead .${name}Tr`).css({
@@ -40,8 +40,10 @@ export function DataListCSS(option = new DataListCSSOption()){
     //     paddingLeft: `20px`
     // })   
     let tmpColor;
+
+    $(`.${name}Table .${name}Tbody .${name}Tr`).off()
     $(`.${name}Table .${name}Tbody .${name}Tr`)
-    .on( "mouseenter", function(){
+    .on( "mouseenter", function(){        
         tmpColor = $(this).css("backgroundColor")
         $(this).css({
             backgroundColor:"#CCC"
